@@ -1,6 +1,8 @@
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 
+import { Toaster } from "@/components/ui/sonner";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,7 +18,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
-			<body style={geistSans.style}>{children}</body>
+			<body style={geistSans.style}>
+				{children}
+				<Toaster />
+			</body>
 		</html>
 	);
 }
