@@ -20,20 +20,18 @@ export function TeamStats({ team1, team2, className, ...props }: TeamStatsProps)
 					title={team1.allOut ? team1.score : `${team1.score}-${team1.wickets}`}
 				/>
 				<div className="grid">
-					{team1.batters
-						// .sort((a, b) => Number(a.runs) - Number(b.runs))
-						.map(({ name, balls, runs, out }, idx) => (
-							<div key={`${name}-${idx}`} className="grid grid-cols-[1fr_60px_50px] border-b border-black/50">
-								<p className="text-gradient-end border-r border-black/50 px-2 py-1 text-left font-medium uppercase">
-									{name}
-								</p>
-								<p className="text-gradient-end grid place-items-center border-r border-black/50 text-right font-bold">
-									{runs}
-									{!out && "*"}
-								</p>
-								<p className="text-gradient-end/80 grid place-items-center text-right">{balls}</p>
-							</div>
-						))}
+					{team1.batters.map(({ name, balls, runs, out }, idx) => (
+						<div key={`${name}-${idx}`} className="grid min-h-8 grid-cols-[1fr_60px_50px] border-b border-black/50">
+							<p className="text-gradient-end border-r border-black/50 px-2 py-1 text-left font-medium uppercase">
+								{name}
+							</p>
+							<p className="text-gradient-end grid place-items-center border-r border-black/50 text-right font-bold">
+								{runs}
+								{!out && "*"}
+							</p>
+							<p className="text-gradient-end/80 grid place-items-center text-right">{balls}</p>
+						</div>
+					))}
 				</div>
 			</div>
 
@@ -41,7 +39,7 @@ export function TeamStats({ team1, team2, className, ...props }: TeamStatsProps)
 				<StatsHeader icon="ball" title={team1.overs} backgroundColor={team2Color} />
 				<div className="grid">
 					{team2.bowlers.map(({ name, wickets, runs, overs }, idx) => (
-						<div key={`${name}-${idx}`} className="grid grid-cols-[1fr_60px_50px] border-b border-black/50">
+						<div key={`${name}-${idx}`} className="grid min-h-8 grid-cols-[1fr_60px_50px] border-b border-black/50">
 							<p className="text-gradient-end border-r border-black/50 px-2 py-1 text-left font-medium uppercase">
 								{name}
 							</p>
@@ -58,7 +56,7 @@ export function TeamStats({ team1, team2, className, ...props }: TeamStatsProps)
 function StatsHeader({
 	backgroundColor,
 	title,
-	icon
+	icon,
 }: {
 	backgroundColor: string;
 	title: string;

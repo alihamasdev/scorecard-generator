@@ -4,6 +4,7 @@ export interface Team {
 	wickets: string;
 	overs: string;
 	allOut: boolean;
+	players: string[];
 	batters: BattingPlayer[];
 	bowlers: BowlingPlayer[];
 }
