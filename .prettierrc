@@ -2,7 +2,7 @@
 	"plugins": ["prettier-plugin-tailwindcss", "@ianvs/prettier-plugin-sort-imports"],
 	"tabWidth": 2,
 	"useTabs": true,
-	"printWidth": 140,
+	"printWidth": 120,
 	"singleQuote": false,
 	"trailingComma": "none",
 	"jsxSingleQuote": false,

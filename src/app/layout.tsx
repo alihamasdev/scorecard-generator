@@ -9,7 +9,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
 	title: "Cricket Scorecard Generator",
-	description: "Generate cricket scorecards"
+	description: "Generate cricket scorecards",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
