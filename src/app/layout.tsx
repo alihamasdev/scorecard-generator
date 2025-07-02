@@ -1,16 +1,11 @@
 import { type Metadata } from "next";
-import { Geist } from "next/font/google";
 
-import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/lib/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { Footer } from "@/components/footer";
+import { cwcFont } from "@/app/font/cwc";
 
 import "./globals.css";
-import { Footer } from "@/components/footer";
-
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"]
-});
 
 export const metadata: Metadata = {
 	title: "Cricket Scorecard Generator",
@@ -20,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body style={geistSans.style}>
+			<body style={cwcFont.style}>
 				<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
 					<main className="bg-muted/60 flex min-h-dvh w-full flex-col">
 						<header className="w-full px-4">
