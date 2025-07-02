@@ -17,13 +17,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en" suppressHydrationWarning>
 			<body style={cwcFont.style}>
 				<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-					<main className="bg-muted/60 flex min-h-dvh w-full flex-col">
+					<main className="flex min-h-dvh w-full flex-col border-b">
 						<header className="w-full px-4">
 							<div className="container mx-auto flex items-center justify-between py-4">
 								<h1 className="text-3xl font-bold">Cricket Scorecard Generator</h1>
 							</div>
 						</header>
-						<div className="container mx-auto">{children}</div>
+						<div className="container mx-auto px-4">{children}</div>
 						<Footer />
 					</main>
 					<Toaster />
