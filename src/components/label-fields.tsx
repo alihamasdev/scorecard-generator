@@ -51,10 +51,7 @@ export function ComboBoxLabel({ label, value, players, ...props }: ComboBoxLabel
 			<Label htmlFor={id}>{label}</Label>
 			<Popover>
 				<PopoverTrigger asChild>
-					<Button
-						variant="outline"
-						className={cn("w-full justify-between font-normal capitalize", !value && "text-muted-foreground")}
-					>
+					<Button variant="outline" className="w-full justify-between font-normal capitalize">
 						{value ? players.find((player) => player === value) : ""}
 					</Button>
 				</PopoverTrigger>

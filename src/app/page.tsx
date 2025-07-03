@@ -1,7 +1,10 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
+import domtoimage from "dom-to-image";
+import { Download } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,6 +16,7 @@ import { TeamTitleRow } from "@/components/team-title-row";
 import type { CanvasSetting, MatchInfo, Team } from "@/components/types";
 
 export default function Page() {
+	const scorecardRef = useRef<HTMLDivElement>(null);
 	const [matchInfo, setMatchInfo] = useState<MatchInfo>({ title: "Match 01", result: "Match result" });
 	const [canvasSetting, setCanvasSetting] = useState<CanvasSetting>({ padding: 155, backgroundOpacity: 0.3 });
 	const [team1, setTeam1] = useState<Team>({
@@ -23,7 +27,7 @@ export default function Page() {
 		allOut: false,
 		players: [],
 		batters: [],
-		bowlers: [],
+		bowlers: []
 	});
 
 	const [team2, setTeam2] = useState<Team>({
@@ -34,14 +38,30 @@ export default function Page() {
 		allOut: false,
 		players: [],
 		batters: [],
-		bowlers: [],
+		bowlers: []
 	});
+
+	const downloadScorecard = async () => {
+		if (!scorecardRef.current) return;
+
+		try {
+			const dataUrl = await domtoimage.toPng(scorecardRef.current, { quality: 100 });
+
+			const link = document.createElement("a");
+			link.download = `${team1.name}-vs-${team2.name}.png`;
+			link.href = dataUrl;
+			link.click();
+		} catch (error) {
+			console.error("Error downloading scorecard:", error);
+		}
+	};
 
 	return (
 		<Fragment>
 			<ResizablePanelGroup direction="horizontal">
 				<ResizablePanel defaultSize={100}>
 					<section
+						ref={scorecardRef}
 						className="relative mx-auto flex max-w-full items-center justify-center overflow-hidden rounded-2xl"
 						style={{
 							backgroundImage: "url(/lords.jpg)",
@@ -49,12 +69,14 @@ export default function Page() {
 							backgroundPosition: "center",
 							aspectRatio: 16 / 9,
 							objectFit: "cover",
-							paddingInline: canvasSetting.padding,
+							paddingInline: canvasSetting.padding
 						}}
 					>
 						<div className="relative z-1 grid aspect-video w-full grid-cols-2 grid-rows-[44px_60px_1fr_60px] gap-x-3 gap-y-2">
-							<div className="bg-gradient-end col-span-2 mx-auto w-fit rounded-full px-8 text-lg/11 font-bold text-white uppercase">
-								{matchInfo.title}
+							<div className="col-span-2 flex w-full justify-center">
+								<div className="bg-gradient-end rounded-full px-8 text-lg/11 font-bold text-white uppercase">
+									{matchInfo.title}
+								</div>
 							</div>
 							<TeamTitleRow name={team1.name} />
 							<TeamTitleRow name={team2.name} />
@@ -73,7 +95,23 @@ export default function Page() {
 				</ResizablePanel>
 			</ResizablePanelGroup>
 
-			<section className="mt-5 mb-10 grid w-full grid-cols-2 gap-5">
+			<div className="my-5 flex items-center justify-center gap-x-4">
+				<Button
+					variant="outline"
+					onClick={() => {
+						setTeam1(team2);
+						setTeam2(team1);
+					}}
+				>
+					Swap Team
+				</Button>
+				<Button onClick={downloadScorecard}>
+					<Download />
+					Download
+				</Button>
+			</div>
+
+			<section className="mb-10 grid w-full grid-cols-2 gap-5">
 				<Card>
 					<CardHeader>
 						<CardTitle>Match Info</CardTitle>

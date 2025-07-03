@@ -18,17 +18,17 @@ export function TeamForm({ team, setTeamAction }: TeamFormProps) {
 		index: number,
 		type: T,
 		field: T extends "batter" ? keyof BattingPlayer : keyof BowlingPlayer,
-		value: string | boolean,
+		value: string | boolean
 	) => {
 		if (type === "batter") {
 			setTeamAction((prev) => ({
 				...prev,
-				batters: prev.batters.map((player, i) => (i === index ? { ...player, [field]: value } : player)),
+				batters: prev.batters.map((player, i) => (i === index ? { ...player, [field]: value } : player))
 			}));
 		} else {
 			setTeamAction((prev) => ({
 				...prev,
-				bowlers: prev.bowlers.map((player, i) => (i === index ? { ...player, [field]: value } : player)),
+				bowlers: prev.bowlers.map((player, i) => (i === index ? { ...player, [field]: value } : player))
 			}));
 		}
 	};
@@ -39,7 +39,7 @@ export function TeamForm({ team, setTeamAction }: TeamFormProps) {
 		} else {
 			setTeamAction((prev) => ({
 				...prev,
-				bowlers: [...prev.bowlers, { name: "", overs: "", runs: "", wickets: "" }],
+				bowlers: [...prev.bowlers, { name: "", overs: "1.0", runs: "", wickets: "" }]
 			}));
 		}
 	};
@@ -133,7 +133,7 @@ export function TeamForm({ team, setTeamAction }: TeamFormProps) {
 						<ComboBoxLabel
 							label="Name"
 							value={name}
-							players={team.players.filter((player) => player !== name)}
+							players={team.players}
 							onSelect={(value) => updatePlayer(index, "bowler", "name", value)}
 						/>
 						<InputLabel
