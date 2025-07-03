@@ -26,7 +26,7 @@ const TagsInputLabel = React.forwardRef<
 		ref={ref}
 		className={cn(
 			"text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-			className,
+			className
 		)}
 		{...props}
 	/>
@@ -40,11 +40,11 @@ const TagsInputList = React.forwardRef<HTMLDivElement, React.ComponentPropsWitho
 			ref={ref}
 			className={cn(
 				"flex w-full flex-wrap items-center gap-1.5 rounded-md text-sm disabled:cursor-not-allowed disabled:opacity-50",
-				className,
+				className
 			)}
 			{...props}
 		/>
-	),
+	)
 );
 TagsInputList.displayName = "TagsInputList";
 
@@ -60,7 +60,7 @@ const TagsInputInput = React.forwardRef<
 			"disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
 			"focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
 			"aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-			className,
+			className
 		)}
 		{...props}
 	/>
@@ -76,7 +76,7 @@ const TagsInputItem = React.forwardRef<
 		ref={ref}
 		className={cn(
 			"data-editing:ring-ring [&[data-highlighted]:not([data-editing])]:bg-accent [&[data-highlighted]:not([data-editing])]:text-accent-foreground inline-flex max-w-[calc(100%-8px)] items-center gap-1.5 rounded border bg-transparent px-2.5 py-1 text-sm focus:outline-hidden data-disabled:cursor-not-allowed data-disabled:opacity-50 data-editable:select-none data-editing:bg-transparent data-editing:ring-1 [&:not([data-editing])]:pr-1.5",
-			className,
+			className
 		)}
 		{...props}
 	>
@@ -91,7 +91,7 @@ TagsInputItem.displayName = TagsInputPrimitive.Item.displayName;
 const TagsInputClear = React.forwardRef<
 	React.ComponentRef<typeof TagsInputPrimitive.Clear>,
 	React.ComponentPropsWithoutRef<typeof TagsInputPrimitive.Clear>
->(({ className, ...props }, ref) => <TagsInputPrimitive.Clear data-slot="tags-input-clear" ref={ref} {...props} />);
+>(({ ...props }, ref) => <TagsInputPrimitive.Clear data-slot="tags-input-clear" ref={ref} {...props} />);
 TagsInputClear.displayName = TagsInputPrimitive.Clear.displayName;
 
 export { TagsInput, TagsInputLabel, TagsInputList, TagsInputInput, TagsInputItem, TagsInputClear };
