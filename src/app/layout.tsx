@@ -8,8 +8,8 @@ import { cwcFont } from "@/app/font/cwc";
 import "./globals.css";
 
 export const metadata: Metadata = {
-	title: "Cricket Scorecard Generator",
-	description: "Generate cricket scorecards",
+	title: "Cricket Scorecard Generator | Ali Hamas",
+	description: "Create beautiful cricket scorecards in ICC scorecards style and share with your friends"
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
